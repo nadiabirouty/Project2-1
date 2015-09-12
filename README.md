@@ -12,6 +12,8 @@ The main goals of this assignment are to learn how to:
 
 The final version of Xcode 7 has been released so you should use that instead of any of the beta version. Please go ahead and download that before proceeding with this project.
 
+You will need to do some reading on your own. Not all the techniques have been covered in class. We have covered enough of the essentials that you will be able to build a working version but, for the aesthetics, you will need to go read up on how to do it.
+
 # Requirements
 ![Project 2](images/Project2.gif)
 
