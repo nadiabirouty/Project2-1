@@ -7,6 +7,9 @@
 //
 
 import XCTest
+import Foundation
+import Alamofire
+import SwiftyJSON
 @testable import Instagram
 
 class InstagramTests: XCTestCase {
@@ -32,13 +35,26 @@ class InstagramTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    //test using my BobaGuys instagram instagram
     func testBaseCasePopularMedia(){
-        /**
-        let bobaGuys = InstagramUser.InstaUser(profileImageUrl: "notrelevant", username: "bobaguys", userID: "240315031", profileInfo: nil)
-        let mediaItem = InstagramUser.MediaItem(MediaUser: bobaGuys, MediaCaption: nil, datePhotoTaken: 25, mediaLikes: 23, mediaComments: nil)
-        InstagramUser.fetchPopularMedia(callback: mediaItem)
-        **/
+        let defaultTimeout: NSTimeInterval = 10
+        let expectation = expectationWithDescription("Waiting for Response")
+        Alamofire.request(.GET, "https://api.instagram.com/v1/media/popular?client_id=c953ffadb974463f9f6813fc4fc91673").responseJSON { (_, response, _) -> Void in
+            XCTAssertEqual(response!.statusCode, 200)
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
+    }
+        
+    
+    func testHTTPResponse_works(){
+        let defaultTimeout: NSTimeInterval = 10
+        let expectation = expectationWithDescription("Waiting for Response")
+        Alamofire.request(.GET, InstagramUser.PopularMediaAPI).responseJSON { (_, response, _) -> Void in
+            XCTAssertEqual(response!.statusCode, 200)
+            //XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
     }
     
     func testPrivateUser(){
