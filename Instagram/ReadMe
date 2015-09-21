@@ -1,0 +1,5 @@
+Introduction:
+This is an application that mimics the design and functionality of the Instagram App.  IT has most of the features of the official application, but it is a read only app meaning that a user cannot post, like, or comment on any of the posts that they see.
+
+Model Design Structure Explanation:
+Explanation #1: When creating Comment Users for each media item, I did not need each user’s profile information, so I made each nil.  This saves space and time because I am not collecting information that will not show up on the feed list.  The profile information is only needed on each user’s specific profile page.
