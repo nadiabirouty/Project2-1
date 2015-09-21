@@ -58,7 +58,8 @@ class InstagramTests: XCTestCase {
     }
     
     func testPrivateUser(){
-        
+        //want to test a private user since their posts cannot be accessed
+        //only profile picture, username, and profile info (followers, following, numPosts)
     }
     
 }

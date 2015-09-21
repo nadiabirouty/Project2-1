@@ -19,6 +19,7 @@ class InstagramUser {
     static let UserProfileAPI_2 = "/?client_id=c953ffadb974463f9f6813fc4fc91673"
     
     struct ProfileInfo {
+        let userID: String
         let numPosts: Int
         let numFollowers: Int
         let numFollowing: Int
@@ -28,7 +29,7 @@ class InstagramUser {
         let profileImageUrl: String
         let username: String
         let userID: String
-        let profileInfo: ProfileInfo?
+        //let profileInfo: ProfileInfo?
     }
     
     struct CommentUser {
@@ -64,7 +65,7 @@ class InstagramUser {
     
     func populateUserInfoView(data: AnyObject?, callback: (ProfileInfo) -> Void) {
         let json = JSON(data!)
-        callback(ProfileInfo(numPosts: json["counts"]["media"].intValue, numFollowers: json["counts"]["followed_by"].intValue, numFollowing: json["counts"]["follows"].intValue))
+        callback(ProfileInfo(userID: json["id"].stringValue, numPosts: json["counts"]["media"].intValue, numFollowers: json["counts"]["followed_by"].intValue, numFollowing: json["counts"]["follows"].intValue))
     }
     
     func populateFeedWith(data: AnyObject?, callback: ([MediaItem]) -> Void) {
@@ -73,11 +74,11 @@ class InstagramUser {
         
         for item in json.arrayValue {
             let id = item["user"]["id"].stringValue
-            let newUser = InstaUser(profileImageUrl: item["user"]["profile_picture"].stringValue, username: item["user"]["username"].stringValue, userID: id, profileInfo: nil)
+            let newUser = InstaUser(profileImageUrl: item["user"]["profile_picture"].stringValue, username: item["user"]["username"].stringValue, userID: id)
             var commentList = [CommentUser]()
             for comment in item["comments"].arrayValue {
                 let id = comment["from"]["id"].stringValue
-                let commentUser = InstaUser(profileImageUrl: comment["from"]["profile_picture"].stringValue, username: comment["from"]["username"].stringValue, userID: id, profileInfo: nil)
+                let commentUser = InstaUser(profileImageUrl: comment["from"]["profile_picture"].stringValue, username: comment["from"]["username"].stringValue, userID: id)
                 //see explanation #1 in ReadMe 
                 commentList.append(CommentUser(userComment: commentUser, comment: comment["text"].stringValue))
             }
