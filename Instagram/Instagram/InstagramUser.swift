@@ -17,7 +17,7 @@ class InstagramUser {
     static let UserRecentMediaAPI_2 = "/media/recent/?client_id=c953ffadb974463f9f6813fc4fc91673"
     static let UserProfileAPI_1 = "https://api.instagram.com/v1/users/"
     static let UserProfileAPI_2 = "/?client_id=c953ffadb974463f9f6813fc4fc91673"
-    
+    //Classes
     struct ProfileInfo {
         let userID: String
         let numPosts: Int
@@ -29,7 +29,6 @@ class InstagramUser {
         let profileImageUrl: String
         let username: String
         let userID: String
-        //let profileInfo: ProfileInfo?
     }
     
     struct CommentUser {
@@ -44,7 +43,7 @@ class InstagramUser {
         let mediaLikes: Int
         let mediaComments: [CommentUser]?
     }
-    
+
     func fetchPopularMedia(callback: ([MediaItem]) -> Void) {
         Alamofire.request(.GET, InstagramUser.PopularMediaAPI).responseJSON { _, _, jsonObj in
             self.populateFeedWith(jsonObj.value!, callback: callback)

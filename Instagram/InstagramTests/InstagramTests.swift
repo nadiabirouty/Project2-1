@@ -38,7 +38,7 @@ class InstagramTests: XCTestCase {
     func testBaseCasePopularMedia(){
         let defaultTimeout: NSTimeInterval = 10
         let expectation = expectationWithDescription("Waiting for Response")
-        Alamofire.request(.GET, "https://api.instagram.com/v1/media/popular?client_id=c953ffadb974463f9f6813fc4fc91673").responseJSON { (_, response, _) -> Void in
+        Alamofire.request(.GET, "https://api.instagram.com/v1/media/popular?client_id=c953ffadb974463f9f6813fc4fc91673").responseJSON { (request, response, data) -> Void in
             XCTAssertEqual(response!.statusCode, 200)
             expectation.fulfill()
         }
@@ -49,9 +49,8 @@ class InstagramTests: XCTestCase {
     func testHTTPResponse_works(){
         let defaultTimeout: NSTimeInterval = 10
         let expectation = expectationWithDescription("Waiting for Response")
-        Alamofire.request(.GET, InstagramUser.PopularMediaAPI).responseJSON { (_, response, _) -> Void in
+        Alamofire.request(.GET, InstagramUser.PopularMediaAPI).responseJSON { (request, response, data) -> Void in
             XCTAssertEqual(response!.statusCode, 200)
-            //XCTAssertNil(error)
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
@@ -61,5 +60,6 @@ class InstagramTests: XCTestCase {
         //want to test a private user since their posts cannot be accessed
         //only profile picture, username, and profile info (followers, following, numPosts)
     }
+    
     
 }
