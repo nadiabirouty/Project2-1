@@ -58,16 +58,18 @@ class InstagramTableViewController: UITableViewController {
         } else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("Comments", forIndexPath: indexPath) as! CommentsTableViewCell
             let member = mediaDirectory[indexPath.section]
-           //usercomments
+            let numComments = member.mediaComments?.indices
+            for var i in numComments! {
+                if let comment : InstagramUser.CommentUser = member.mediaComments![i] {
+                    cell.commentUser.text = comment.userComment.username
+                    cell.comment.text = comment.comment
+                }
+                
+            }
             return cell
         }
         return UITableViewCell()
     }
-    //for (int i = 0; i <= 8; i++) {
-    //  cell.commentUser.text = member.mediaComments[i].userComment.username
-    //cell.comment.text = member.mediaComments[i].userComment.comment
-    //}
-    
 
     /*
     // MARK: - Navigation
