@@ -17,7 +17,7 @@ class InstagramUser {
     static let UserRecentMediaAPI_2 = "/media/recent/?client_id=c953ffadb974463f9f6813fc4fc91673"
     static let UserProfileAPI_1 = "https://api.instagram.com/v1/users/"
     static let UserProfileAPI_2 = "/?client_id=c953ffadb974463f9f6813fc4fc91673"
-    //Classes
+
     struct ProfileInfo {
         let userID: String
         let numPosts: Int
