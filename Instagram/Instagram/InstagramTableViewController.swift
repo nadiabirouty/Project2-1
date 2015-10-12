@@ -42,29 +42,26 @@ class InstagramTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let nilCell : UITableViewCell
-        if indexPath.section == 0 {
-            let cell : HeaderTableViewCell
-            cell = tableView.dequeueReusableCellWithIdentifier("Header", forIndexPath: indexPath)
-            let member = mediaDirectory[indexPath.row]
+        //let nilCell : UITableViewCell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Header", forIndexPath: indexPath) as! HeaderTableViewCell
+            let member = mediaDirectory[indexPath.section]
             cell.profileUserName.text = member.MediaUser.username
             cell.date.text = member.datePhotoTaken.description
             return cell
-        } else if indexPath.section == 1 {
-            let cell : MediaMainTableViewCell
-            cell = tableView.dequeueReusableCellWithIdentifier("MediaMain", forIndexPath: indexPath)
-            let member = mediaDirectory[indexPath.row]
+        } else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("MediaMain", forIndexPath: indexPath) as! MediaMainTableViewCell
+            let member = mediaDirectory[indexPath.section]
             cell.mediaCaption.text = member.MediaCaption
             cell.numLikes.text = member.mediaLikes.description
             return cell
-        } else if indexPath.section == 2 {
-            let cell : CommentsTableViewCell
-            cell = tableView.dequeueReusableCellWithIdentifier("Comments", forIndexPath: indexPath)
-            let member = mediaDirectory[indexPath.row]
+        } else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Comments", forIndexPath: indexPath) as! CommentsTableViewCell
+            let member = mediaDirectory[indexPath.section]
            //usercomments
             return cell
         }
-        return nilCell
+        return UITableViewCell()
     }
     //for (int i = 0; i <= 8; i++) {
     //  cell.commentUser.text = member.mediaComments[i].userComment.username
@@ -81,5 +78,4 @@ class InstagramTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
